@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package solveproblem_thedoors;
 
-/**
- *
- * @author S2D_9
- */
+import java.util.Arrays;
+import java.util.Scanner;
+import java.lang.Object;
+
+
 public class SolveProblem_TheDoors {
 
     /**
@@ -16,8 +14,43 @@ public class SolveProblem_TheDoors {
      */
     public static void main(String[] args) {
         
-        System.out.println("test");
-        // TODO code application logic here
-    }
+        
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int[] zero_or_one_array = new int[n];
+        
+        for(int i = 0 ; i<n ;i++)
+        {
+            zero_or_one_array[i] = sc.nextInt();
+        }
+              
+        boolean y = true;
+        int current_number = 0 ; 
+        int current_array_index = 0;
+        
+        for(int j = 0 ; y == true ; j++ )
+        {
+            current_number = zero_or_one_array[j];
+            ArrayUtils.removeElement(current_array_index, j);
+            zero_or_one_array[j] = -1;
+            
+            if(!contains(zero_or_one_array, current_number))
+            {
+                current_array_index ++;
+                break;
+            }
+            else
+            {
+                current_array_index = j+1 ;
+            }
+            
+        }
+ 
+        System.out.println(current_array_index);
+}
     
+     public static boolean contains(final int[] arr, final int key) {
+        return Arrays.stream(arr).anyMatch(i -> i == key);
+    }
 }
